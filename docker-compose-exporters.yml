@@ -12,7 +12,8 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
     restart: unless-stopped
-    network_mode: host
+    ports:
+      - 9100:9100
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
@@ -24,4 +25,5 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
       - /cgroup:/cgroup:ro
     restart: unless-stopped
-    network_mode: host
+    ports:
+      - 8080:8080
